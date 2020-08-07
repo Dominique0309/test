@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Roulette Du Bonheur</title>
+    <link rel="stylesheet" href="style.css">
+        <h1>BIENVENUE SUR LA ROULETTE DU BONHEUR</h1>
+        <h2>
+            Bienvenue sur la roulette du bonheur.
+            Misez et Saisissez votre chance pour gagner plus que vous ne pouvez imaginer.
+            Chez nous vos rêves peuvent devenir réalité !
+        </h2>
+</head>
+<body>
+    <div class="text">
+        <p>     
+            <h3>#PRINCIPES</h3>
+            <h3>• Si l'ordinateur tire 0, la mise est perdu.</h3>
+            <h3>• Si l'ordinateur tire le numéro joué, on vous rend la mise plus 35 fois sa valeur.</h3>
+            <h3>• Si l'ordinateur tire un numéro pair et que vous avez choisi « Pair », on vous rend rend la mise plus 1 fois sa
+                valeur. Même chose avec les impairs.</h3>
+        </p>
+    </div>
+     <div>
+        <div class="custom-select">
+            <label class="enter">Choisissez votre valeur de Pari:</label>
+            <select id="choix" name="choix">
+                <option class="choix" value="pair">pair</option>
+                <option class="choix" value="impair">impair</option>
+                <option class="choix" value="1">1</option>
+                <option class="choix" value="2">2</option>
+                <option class="choix" value="3">3</option>
+                <option class="choix" value="4">4</option>
+                <option class="choix" value="5">5</option>
+                <option class="choix" value="6">6</option>
+                <option class="choix" value="7">7</option>
+                <option class="choix" value="8">8</option>
+                <option class="choix" value="9">9</option>
+                <option class="choix" value="10">10</option>
+                <option class="choix" value="11">11</option>
+                <option class="choix" value="12">12</option>
+                <option class="choix" value="13">13</option>
+                <option class="choix" value="14">14</option>
+                <option class="choix" value="15">15</option>
+                <option class="choix" value="16">16</option>
+                <option class="choix" value="17">17</option>
+                <option class="choix" value="18">18</option>
+                <option class="choix" value="19">19</option>
+                <option class="choix" value="20">20</option>
+                <option class="choix" value="21">21</option>
+                <option class="choix" value="22">22</option>
+                <option class="choix" value="23">23</option>
+                <option class="choix" value="24">24</option>
+                <option class="choix" value="25">25</option>
+                <option class="choix" value="26">26</option>
+                <option class="choix" value="27">27</option>
+                <option class="choix" value="28">28</option>
+                <option class="choix" value="29">29</option>
+                <option class="choix" value="30">30</option>
+                <option class="choix" value="31">31</option>
+                <option class="choix" value="32">32</option>
+                <option class="choix" value="33">33</option>
+                <option class="choix" value="34">34</option>
+                <option class="choix" value="35">35</option>
+                <option class="choix" value="36">36</option>
+
+            </select>
+        </div>
+
+        <div class="mise">
+            <label class="enter">Choisissez le montant de votre mise(mille(s) CFA):</label>
+            <input type="number" id="number" value=1 min="1">
+        </div>
+
+        <div class="button">
+            <input type="button" id="Go" value="JOUER >>>" onclick="jouer()">
+        </div>
+        <div>
+            <div class="montantactuel">
+                <div>
+                    <label>Solde Montant Actuel :</label>
+                    <input type="number" id="mact" value="100" disabled>
+                </div>
+
+            </div>
+
+            <div class="montantperdu">
+                <div>
+                    <label for="">Solde Montant Perdu :</label>
+                    <input type="number" id="mperd" value="0" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var montantactuel = 100;
+var montantperdu = 0;
+function jouer() {
+  var perdu = false;
+  var choix = document.getElementById("choix").value;
+  var mise = parseInt(document.getElementById("number").value);
+  if (montantactuel == 0) {
+    alert("Malheureusement ,Votre porte monnaie est à sec!");
+  } else if (mise > montantactuel) {
+    alert("La somme misée est supérieure à celle dont dispose votre porte monnaie, misez une somme inférieure se trouvant dans la capacité de votre budjet!");
+  } else {
+    // Initialisation gain
+    var gain = 0;
+    // Mise retirée du porte monnaie
+    montantactuel -= mise;
+
+    // Entier aléatoire entre 0 et 36
+    var resultat = Math.round(Math.random() * 36);
+
+    if (resultat == 0) {
+      // Si l'ordi tire 0, on perd
+      perdu = true;
+    } else if (resultat == choix) {
+      // Si l'ordi tire le meme nombre, on gagne
+      gain = mise + mise * 35;
+    } else if (
+      (choix == "pair" && resultat % 2 == 0) ||
+      (choix == "impair" && resultat % 2 != 0)
+    ) {
+      // Si on choisi 'Pair' et que l'ordi tire un nombre pair, on gagne.
+      // Même chose pour le choix 'Impair'
+      gain = mise * 2;
+    } else {
+      // Dans tous les autres cas, on perd
+      perdu = true;
+    }
+
+    if (perdu) {
+      alert("PERDU ! Resultat = " + resultat + "\nMise perdue = " + mise);
+      montantperdu += mise;
+    } else {
+      alert("GAGNÉ ! Resultat = " + resultat + "\nMise rendue = " + gain);
+      montantactuel += gain;
+    }
+
+    document.getElementById("mact").value = montantactuel;
+    document.getElementById("mperd").value = montantperdu;
+  }
+}
+
+    </script>
+    <div class="image"> <img src="./Images/roulette2.jpg" alt=""> 
+        <img src="./Images/roulette3.jpg" alt="">
+        <img src="./Images/logo_roulette.png" alt="">
+        <img src="./Images/pièces.jpg" alt="">
+        <img src="./Images/billets.jpg" alt="">
+     </div>
+    <footer>
+            <Marquee>
+                <h1>La Roulette du BONHEUR vous remercie d'avoir joué !</h1>
+            </Marquee>
+    </footer>
+</body>
+</html>

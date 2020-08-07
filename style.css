@@ -1,0 +1,97 @@
+h2
+{
+ background-color: gold;
+}
+h1{
+    background-color: green;
+    text-align:center;
+}
+body
+{
+background-image: url(./Images/roulette1.jpg);
+background-size: cover;
+background-repeat: no-repeat;
+}
+.text
+{
+ width:280px; 
+ margin-right: auto;
+ background-color:rgb(31, 206, 31);
+}
+img
+{
+ padding-top: 20px;
+ width: 250px;
+ height: 100px;
+ margin-left: auto;
+}
+input,
+select {
+    size: 50%;
+    color: #50d524;
+    font-size: 20px;
+    background-color: black;
+}
+.mise {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+}
+.enter {
+    font-family: monospace;
+    color:red;
+    font-size: 30px;
+    background-color: gold;
+}
+.custom-select {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    font-family: monospace;
+    color: white;
+    font-size: 20px;
+}
+.montantactuel {
+    position: relative;
+    text-align: right;
+    font-family: monospace;
+    color:#4ddd55;
+    background-color:black;
+    font-size: 25px;
+    margin: 5px;
+}
+.montantperdu {
+    position: relative;
+    text-align: right;
+    font-family: monospace;
+    color: red;
+    background-color:black;
+    font-size: 25px;
+    margin: 5px;
+}
+.button {
+    color:#129637;
+    position: absolute;
+    top: 60%;
+    left: 45%;
+}
+#Go{
+    width: 150px;
+    height: 40px;
+    border-radius: 20px;
+}
+#Go:hover{
+    width: 150px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: yellow;
+    color: black;
+    border-width: 1px;
+    border: black solid ;
+    width: 160px;
+    height: 50px;
+}
+footer
+{
+    background-color: gold;
+}
